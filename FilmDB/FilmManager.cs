@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using FilmDB.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FilmDB
 {
@@ -16,56 +17,56 @@ namespace FilmDB
             _context = context;
         }
 
-        public FilmManager AddFilm(FilmModel filmModel)
+        public async Task<FilmManager> AddFilm(FilmModel filmModel)
         {
             _context.Films.Add(filmModel);
             try
             {
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             catch (Exception)
             {
                 if (filmModel.Id != 0)
                 {
                     filmModel.Id = 0;
-                    _context.SaveChanges();
+                    await _context.SaveChangesAsync();
                 }
             }
             return this;
         }
 
-        public FilmManager RemoveFilm(int id)
+        public async Task<FilmManager> RemoveFilm(int id)
         {
-            var film = _context.Films.SingleOrDefault(x => x.Id == id);
+            var film = await _context.Films.SingleOrDefaultAsync(x => x.Id == id);
             _context.Films.Remove(film);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return this;
         }
 
-        public FilmManager UpdateFilm(FilmModel filmModel)
+        public async Task<FilmManager> UpdateFilm(FilmModel filmModel)
         {
             _context.Films.Update(filmModel);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return this;
         }
 
-        public FilmManager ChangeTitle(int id, string newTitle)
+        public async Task<FilmManager> ChangeTitle(int id, string newTitle)
         {
-            var film = GetFilm(id);
+            var film = await GetFilm(id);
             film.Title = string.IsNullOrEmpty(newTitle) ? "Brak tytulu" : newTitle;
             _context.Films.Update(film);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return this;
         }
 
-        public FilmModel GetFilm(int id)
+        public async Task<FilmModel> GetFilm(int id)
         {
-            return _context.Films.SingleOrDefault(x => x.Id == id);
+            return await _context.Films.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public List<FilmModel> GetFilms()
+        public async Task<List<FilmModel>> GetFilms()
         {
-            return _context.Films.ToList();
+            return await _context.Films.ToListAsync();
         }
     }
 }
