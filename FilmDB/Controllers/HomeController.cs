@@ -20,6 +20,8 @@ namespace FilmDB.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Name = "Bartosz";
+            ViewData["Surname"] = "Szydlowski";
             return View();
         }
 
