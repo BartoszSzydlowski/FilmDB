@@ -18,31 +18,31 @@ namespace FilmDB.Controllers
 			_filmManager = filmManager;
 		}
 
-		//public async Task<IActionResult> Index()
-		//{
-  //          var film = new FilmModel()
-  //          {
-  //              Title = "Tytul 10",
-  //              Genre = "Gatunek 10",
-  //              Year = 2000
-  //          };
-  //          _filmManager.AddFilm(film);
-  //          ViewBag.FilmTitle = film.Title;
-  //          ViewBag.FilmGenre = film.Genre;
-  //          ViewBag.FilmYear = film.Year;
-  //          _filmManager.RemoveFilm(10);
-  //          var film = _filmManager.GetFilm(2);
-  //          film.Title = "edited title";
-  //          film.Genre = "edited genre";
-  //          film.Year = 2001;
-  //          _filmManager.UpdateFilm(film);
-  //          _filmManager.ChangeTitle(4, null);
-  //          var films = await _filmManager.GetFilms();
-  //          ViewBag.Films = films;
-  //          return View();
-		//}
+        //public async Task<IActionResult> Index()
+        //{
+        //    var film = new FilmModel()
+        //    {
+        //        Title = "Tytul 10",
+        //        Genre = "Gatunek 10",
+        //        Year = 2000
+        //    };
+        //    _filmManager.AddFilm(film);
+        //    ViewBag.FilmTitle = film.Title;
+        //    ViewBag.FilmGenre = film.Genre;
+        //    ViewBag.FilmYear = film.Year;
+        //    _filmManager.RemoveFilm(10);
+        //    var film = _filmManager.GetFilm(2);
+        //    film.Title = "edited title";
+        //    film.Genre = "edited genre";
+        //    film.Year = 2001;
+        //    _filmManager.UpdateFilm(film);
+        //    _filmManager.ChangeTitle(4, null);
+        //    var films = await _filmManager.GetFilms();
+        //    ViewBag.Films = films;
+        //    return View();
+        //}
 
-		public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index()
 		{
 			var films = await _filmManager.GetFilms();
 			ViewBag.Films = films;
