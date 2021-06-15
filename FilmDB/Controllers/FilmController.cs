@@ -11,9 +11,9 @@ namespace FilmDB.Controllers
 {
 	public class FilmController : Controller
 	{
-		private readonly FilmManager _filmManager;
+		private readonly IFilmManager _filmManager;
         
-		public FilmController(FilmManager filmManager)
+		public FilmController(IFilmManager filmManager)
 		{
 			_filmManager = filmManager;
 		}

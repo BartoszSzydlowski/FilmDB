@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FilmDB
 {
-    public class FilmManager
+    public class FilmManager : IFilmManager
     {
         private readonly FilmContext _context;
 
