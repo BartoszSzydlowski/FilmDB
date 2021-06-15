@@ -11,6 +11,7 @@ namespace FilmDB
 		public static IServiceCollection AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)
 		{
 			services.AddScoped<IFilmManager, FilmManager>();
+
 			services.AddDbContext<FilmContext>(options =>
 			{
 				try
@@ -22,8 +23,11 @@ namespace FilmDB
 					options.UseSqlServer(configuration.GetConnectionString("BackupConnection"));
 				}
 			});
-			services.AddIdentity<ApplicationUserModel, IdentityRole>()
-				.AddEntityFrameworkStores<FilmContext>();
+
+			services.AddIdentity<ApplicationUserModel, IdentityRole>(options =>
+			{
+				options.User.RequireUniqueEmail = true;
+			}).AddEntityFrameworkStores<FilmContext>();
 
 			return services;
 		}

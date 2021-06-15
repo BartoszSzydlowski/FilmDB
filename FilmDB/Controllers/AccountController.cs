@@ -22,7 +22,7 @@ namespace FilmDB.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Register()
+        public IActionResult Register()
         {
             return View();
         }
@@ -31,20 +31,10 @@ namespace FilmDB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel registerModel)
         {
-	        ApplicationUserModel user;
-	        try
-	        {
-		        user = await _userManager.FindByNameAsync(registerModel.Username);
-            }
-	        catch
+	        if (!ModelState.IsValid)
 	        {
 		        return View(registerModel);
-            }
-
-            if (user != null)
-            {
-	            return View(registerModel);
-            }
+	        }
 
             var newUser = new ApplicationUserModel
             {
@@ -54,24 +44,25 @@ namespace FilmDB.Controllers
             };
 
             var result = await _userManager.CreateAsync(newUser, registerModel.Password);
-            if (result.Succeeded)
+            if (!result.Succeeded)
             {
-                return RedirectToAction("Index", "Film");
-            }
+	            foreach (var error in result.Errors)
+	            {
+		            ModelState.AddModelError(error.Code, error.Description);
+	            }
 
-            if (!ModelState.IsValid)
+	            ModelState.AddModelError(string.Empty, "Invalid register attempt");
+            }
+            else
             {
-	            var passwordErrors = string.Join("\n", result.Errors
-		            .Where(x => x.Description.StartsWith("Password")));
-	            ModelState.AddModelError("Password", passwordErrors);
-	            return View(registerModel);
+				return RedirectToAction("Index", "Film");
             }
 
             return View(registerModel);
         }
 
         [HttpGet]
-        public async Task<IActionResult> Login()
+        public IActionResult Login()
         {
             return View();
         }

@@ -8,43 +8,53 @@
 @model RegisterViewModel
 
 <form method="post">
-	<table>
-		<tr>
-			<td>Username: </td>
-			<td><input type="text" asp-for="Username" /></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><span asp-validation-for="Username"></span></td>
-		</tr>
-
-		<tr>
-			<td>Email: </td>
-			<td><input type="text" asp-for="Email" /></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><span asp-validation-for="Email"></span></td>
-		</tr>
-
-		<tr>
-			<td>Password: </td>
-			<td><input type="text" asp-for="Password" /></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><span asp-validation-for="Password"></span></td>
-		</tr>
-
-		<tr>
-			<td>Confirm password: </td>
-			<td><input type="text" asp-for="ConfirmPassword" /></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><span asp-validation-for="ConfirmPassword"></span></td>
-		</tr>
-	</table>
+	<div class="row">
+		<div class="col-md-4">
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<table>
+				<tr class="form-group">
+					<td><label asp-for="Username" class="control-label"></label></td>
+					<td><input asp-for="Username" class="form-control" /></td>
+					@*<td><span asp-validation-for="Username" class="text-danger"></span></td>*@
+				</tr>
+				<tr class="form-group">
+					<td><label asp-for="Email" class="control-label"></label></td>
+					<td><input asp-for="Email" class="form-control" /></td>
+					@*<td><span asp-validation-for="Email" class="text-danger"></span></td>*@
+				</tr>
+				<tr class="form-group">
+					<td><label asp-for="Password" class="control-label"></label></td>
+					<td><input asp-for="Password" class="form-control" /></td>
+					@*<td><span asp-validation-for="Password" class="text-danger"></span></td>*@
+				</tr>
+				<tr class="form-group">
+					<td><label asp-for="ConfirmPassword" class="control-label"></label></td>
+					<td><input asp-for="ConfirmPassword" class="form-control" /></td>
+					@*<td><span asp-validation-for="ConfirmPassword" class="text-danger"></span></td>*@
+				</tr>
+			</table>
+			@*<div class="form-group">
+				<label asp-for="Username" class="control-label"></label>
+				<input asp-for="Username" class="form-control" />
+				<span asp-validation-for="Username" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Email" class="control-label"></label>
+				<input asp-for="Email" class="form-control" />
+				<span asp-validation-for="Email" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Password" class="control-label"></label>
+				<input asp-for="Password" class="form-control" />
+				<span asp-validation-for="Password" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="ConfirmPassword" class="control-label"></label>
+				<input asp-for="ConfirmPassword" class="form-control" />
+				<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+			</div>*@
+		</div>
+	</div>
 	<table>
 		<tr>
 			<td><a asp-action="Register"><input type="submit" value="Add new" class="btn btn-primary" /></a></td>
