@@ -6,8 +6,7 @@ namespace FilmDB
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddDependencyInjection(this IServiceCollection services,
-            IConfiguration configuration)
+        public static IServiceCollection AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IFilmManager, FilmManager>();
             services.AddDbContext<FilmContext>(options =>
