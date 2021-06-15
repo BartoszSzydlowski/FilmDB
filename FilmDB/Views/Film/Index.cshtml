@@ -1,48 +1,48 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+	For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Films";
+	ViewData["Title"] = "Films";
 }
 
 <table class="table table-striped table-bordered">
-    <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Genre</th>
-        <th>Year</th>
-        <th></th>
-    </tr>
-    @foreach (var film in ViewBag.Films)
-    {
-        <tr>
-            <td>@film.Id</td>
-            <td>@film.Title</td>
-            <td>@film.Genre</td>
-            <td>@film.Year</td>
-            @*<td>
-                <a asp-action="Remove" asp-route-id="@film.Id"><input type="submit" value="Remove" class="btn btn-danger" /></a>
-                <a asp-action="Edit" asp-route-id="@film.Id"><input type="submit" value="Edit" class="btn btn-warning" /></a>
-            </td>*@
-            <td>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Options
-                    </button>
-                    @*<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a asp-action="Edit" asp-route-id="@film.Id" class="dropdown-item">Edit</a>
-                        <a asp-action="Remove" asp-route-id="@film.Id" class="dropdown-item">Remove</a>
-                    </div>*@
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a asp-action="Edit" asp-route-id="@film.Id" class="dropdown-item">Edit</a>
-                        <a asp-action="Remove" asp-route-id="@film.Id" class="dropdown-item">Remove</a>
-                        <a asp-action="Details" asp-route-id="@film.Id" class="dropdown-item">Details</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    }
+	<tr>
+		<th>Id</th>
+		<th>Title</th>
+		<th>Genre</th>
+		<th>Year</th>
+		<th></th>
+	</tr>
+	@foreach (var film in ViewBag.Films)
+	{
+		<tr>
+			<td>@film.Id</td>
+			<td>@film.Title</td>
+			<td>@film.Genre</td>
+			<td>@film.Year</td>
+			@*<td>
+					<a asp-action="Remove" asp-route-id="@film.Id"><input type="submit" value="Remove" class="btn btn-danger" /></a>
+					<a asp-action="Edit" asp-route-id="@film.Id"><input type="submit" value="Edit" class="btn btn-warning" /></a>
+				</td>*@
+			<td>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Options
+					</button>
+					@*<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a asp-action="Edit" asp-route-id="@film.Id" class="dropdown-item">Edit</a>
+							<a asp-action="Remove" asp-route-id="@film.Id" class="dropdown-item">Remove</a>
+						</div>*@
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a asp-action="Edit" asp-route-id="@film.Id" class="dropdown-item">Edit</a>
+						<a asp-action="Remove" asp-route-id="@film.Id" class="dropdown-item">Remove</a>
+						<a asp-action="Details" asp-route-id="@film.Id" class="dropdown-item">Details</a>
+					</div>
+				</div>
+			</td>
+		</tr>
+	}
 </table>
 <a asp-action="Add">
-    <input type="submit" class="btn btn-primary" value="Add new">
+	<input type="submit" class="btn btn-primary" value="Add new">
 </a>

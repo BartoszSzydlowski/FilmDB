@@ -6,20 +6,26 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FilmDB
 {
-    public static class DependencyInjection
-    {
-        public static IServiceCollection AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)
-        {
-            services.AddScoped<IFilmManager, FilmManager>();
-            services.AddDbContext<FilmContext>(options =>
-            {
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-            });
-            services.AddIdentity<ApplicationUserModel, IdentityRole>()
-                .AddEntityFrameworkStores<FilmContext>();
+	public static class DependencyInjection
+	{
+		public static IServiceCollection AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)
+		{
+			services.AddScoped<IFilmManager, FilmManager>();
+			services.AddDbContext<FilmContext>(options =>
+			{
+				try
+				{
+					options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+				}
+				catch
+				{
+					options.UseSqlServer(configuration.GetConnectionString("BackupConnection"));
+				}
+			});
+			services.AddIdentity<ApplicationUserModel, IdentityRole>()
+				.AddEntityFrameworkStores<FilmContext>();
 
-
-            return services;
-        }
-    }
+			return services;
+		}
+	}
 }

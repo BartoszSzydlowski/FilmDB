@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using FilmDB.Models;
 using Microsoft.AspNetCore.Identity;
@@ -19,7 +20,6 @@ namespace FilmDB.Controllers
             _signInManager = signInManager;
             _userManager = userManager;
         }
-        
 
         [HttpGet]
         public async Task<IActionResult> Register()
@@ -31,11 +31,19 @@ namespace FilmDB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel registerModel)
         {
-            var user = await _userManager.FindByNameAsync(registerModel.Username);
+	        ApplicationUserModel user;
+	        try
+	        {
+		        user = await _userManager.FindByNameAsync(registerModel.Username);
+            }
+	        catch
+	        {
+		        return View(registerModel);
+            }
 
-            if (user != null || !ModelState.IsValid)
+            if (user != null)
             {
-                return View(registerModel);
+	            return View(registerModel);
             }
 
             var newUser = new ApplicationUserModel
@@ -49,6 +57,14 @@ namespace FilmDB.Controllers
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Film");
+            }
+
+            if (!ModelState.IsValid)
+            {
+	            var passwordErrors = string.Join("\n", result.Errors
+		            .Where(x => x.Description.StartsWith("Password")));
+	            ModelState.AddModelError("Password", passwordErrors);
+	            return View(registerModel);
             }
 
             return View(registerModel);

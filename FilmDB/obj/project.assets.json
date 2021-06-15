@@ -8038,26 +8038,33 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\NobleProg\\.nuget\\packages\\": {}
+    "C:\\Users\\Bartek\\.nuget\\packages\\": {},
+    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\NobleProg\\Desktop\\FilmDB\\FilmDB\\FilmDB.csproj",
+      "projectUniqueName": "C:\\Users\\Bartek\\Desktop\\FilmDB\\FilmDB\\FilmDB.csproj",
       "projectName": "FilmDB",
-      "projectPath": "C:\\Users\\NobleProg\\Desktop\\FilmDB\\FilmDB\\FilmDB.csproj",
-      "packagesPath": "C:\\Users\\NobleProg\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\NobleProg\\Desktop\\FilmDB\\FilmDB\\obj\\",
+      "projectPath": "C:\\Users\\Bartek\\Desktop\\FilmDB\\FilmDB\\FilmDB.csproj",
+      "packagesPath": "C:\\Users\\Bartek\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Bartek\\Desktop\\FilmDB\\FilmDB\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\NobleProg\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Bartek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -8131,7 +8138,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,43 +1,54 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+	For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Register";
+	ViewData["Title"] = "Register";
 }
 
 @model RegisterViewModel
 
-<div asp-validation-summary="All">
-    <form method="post">
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" asp-for="Username" /></td>
-                <td><span asp-validation-for="Username"></span></td>
-            </tr>
-            <tr>
-                <td>Email: </td>
-                <td><input type="text" asp-for="Email" /></td>
-            </tr>
-            <tr>
-                <td><span asp-validation-for="Email"></span></td>
-            </tr>
-            <tr>
-                <td>Password: </td>
-                <td><input type="text" asp-for="Password" /></td>
-                <td><span asp-validation-for="Password"></span></td>
-            </tr>
-            <tr>
-                <td>Confirm password: </td>
-                <td><input type="text" asp-for="ConfirmPassword" /></td>
-                <td><span asp-validation-for="ConfirmPassword"></span></td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td><a asp-action="Register"><input type="submit" value="Add new" class="btn btn-primary" /></a></td>
-                <td><a asp-action="Index" asp-controller="Film"><input type="submit" value="Return to home page" class="btn btn-primary" /></a></td>
-            </tr>
-        </table>
-    </form>
-</div>
+<form method="post">
+	<table>
+		<tr>
+			<td>Username: </td>
+			<td><input type="text" asp-for="Username" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><span asp-validation-for="Username"></span></td>
+		</tr>
+
+		<tr>
+			<td>Email: </td>
+			<td><input type="text" asp-for="Email" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><span asp-validation-for="Email"></span></td>
+		</tr>
+
+		<tr>
+			<td>Password: </td>
+			<td><input type="text" asp-for="Password" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><span asp-validation-for="Password"></span></td>
+		</tr>
+
+		<tr>
+			<td>Confirm password: </td>
+			<td><input type="text" asp-for="ConfirmPassword" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><span asp-validation-for="ConfirmPassword"></span></td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td><a asp-action="Register"><input type="submit" value="Add new" class="btn btn-primary" /></a></td>
+			<td><a asp-action="Index" asp-controller="Film"><input type="submit" value="Return to home page" class="btn btn-primary" /></a></td>
+		</tr>
+	</table>
+</form>

@@ -1,24 +1,24 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+	For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model FilmModel
 
 <form asp-action="ConfirmRemove" method="post">
-    <input type="hidden" name="id" asp-for="@Model.Id" />
-    <table class="table">
-        <tr>
-            <td>Title: </td>
-            <td>@Model.Title</td>
-        </tr>
-        <tr>
-            <td>Genre: </td>
-            <td>@Model.Genre</td>
-        </tr>
-        <tr>
-            <td>Year: </td>
-            <td>@Model.Year</td>
-        </tr>
-    </table>
-    <a><input type="submit" value="Confirm remove" class="btn btn-danger" /></a>
-    <a asp-action="Index" asp-controller="Film"><input type="submit" value="Return to home page" class="btn btn-primary" /></a>
+	<input type="hidden" name="id" asp-for="@Model.Id" />
+	<table class="table">
+		<tr>
+			<td>Title: </td>
+			<td>@Model.Title</td>
+		</tr>
+		<tr>
+			<td>Genre: </td>
+			<td>@Model.Genre</td>
+		</tr>
+		<tr>
+			<td>Year: </td>
+			<td>@Model.Year</td>
+		</tr>
+	</table>
+	<a><input type="submit" value="Confirm remove" class="btn btn-danger" /></a>
+	<a asp-action="Index" asp-controller="Film"><input type="submit" value="Return to home page" class="btn btn-primary" /></a>
 </form>
