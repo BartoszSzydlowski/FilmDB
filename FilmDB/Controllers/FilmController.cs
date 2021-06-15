@@ -101,5 +101,12 @@ namespace FilmDB.Controllers
 			}
 			return RedirectToAction(nameof(Index));
 		}
+
+		[HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var film = await _filmManager.GetFilm(id);
+            return View(film);
+        }
 	}
 }

@@ -19,6 +19,8 @@
             <td><input type="text" asp-for="Year" /></td>
         </tr>
     </table>
-    <a asp-action="Edit"><input type="submit" value="Edit" class="btn btn-success"/></a>
-    <a asp-action="Index" asp-controller="Film"><input type="submit" value="Return to home page" class="btn btn-primary"/></a>
+    <div class="d-flex justify-content-end">
+        <a class="m-2" asp-action="Edit"><input type="submit" value="Edit" class="btn btn-success" /></a>
+        <a class="m-2" asp-action="Index" asp-controller="Film"><input type="submit" value="Return to home page" class="btn btn-primary" /></a>
+    </div>
 </form>
