@@ -9,17 +9,20 @@
     ViewData["Title"] = "Roles";
 }
 
-<form method="post">
-    <table>
-        @foreach (var role in ViewBag.Roles)
-        {
-            <tr>
-                <td>@role.Name</td>
-                <td><a asp-action="Remove" asp-route-id="@role.Id">Remove</a></td>
-            </tr>
-        }
-    </table>
-</form>
+<table>
+    @foreach (var role in ViewBag.Roles)
+    {
+        <tr>
+            <td>@role.Name</td>
+            <td><a asp-action="Remove" asp-route-id="@role.Id"><input type="submit" class="btn btn-danger" value="Remove"/></a></td>
+            <td><a asp-action="Edit" asp-route-id="@role.Id"><input type="submit" class="btn btn-warning" value="Edit"/></a></td>
+        </tr>
+    }
+</table>
+
+<div asp-validation-summary="All">
+
+</div>
 
 <table>
     <tr>

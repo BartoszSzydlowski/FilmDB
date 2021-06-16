@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Add To Role";
+}
+
+@model FilmDB.ViewModels.AddToRoleViewModel
+
+<h1>AddToRole</h1>
+
+
+<form method="post">
+    <select asp-for="@Model.userId" asp-items="@(new SelectList(Model.Users, "Id","UserName"))"></select>
+    <select asp-for="@Model.roleId" asp-items="@(new SelectList(Model.Roles, "Id", "Name"))"></select>
+    <a asp-action="AddToRole"><input type="submit" class="btn btn-primary" value="Add role to user"></a>
+</form>

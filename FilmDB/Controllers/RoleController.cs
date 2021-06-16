@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.CodeAnalysis.Differencing;
+using Microsoft.EntityFrameworkCore;
 
 namespace FilmDB.Controllers
 {
@@ -16,10 +18,12 @@ namespace FilmDB.Controllers
     public class RoleController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public RoleController(RoleManager<IdentityRole> roleManager)
+        public RoleController(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             _roleManager = roleManager;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -48,7 +52,8 @@ namespace FilmDB.Controllers
                 var result = await _roleManager.CreateAsync(newRole);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction(nameof(FilmController.Index), "Film");
+                    //return RedirectToAction(nameof(FilmController.Index), "Film");
+                    return RedirectToAction(nameof(Index));
                 }
                 else
                 {
@@ -72,5 +77,60 @@ namespace FilmDB.Controllers
             var role = await _roleManager.FindByIdAsync(id);
             return View(role);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(IdentityRole role)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _roleManager.UpdateAsync(role);
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(error.Code, error.Description);
+                    }
+                    ModelState.AddModelError("", "Error updating role");
+                    return View();
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddToRole([FromServices] AddToRoleViewModel model)
+        {
+            model.Users = await _userManager.Users.ToListAsync();
+            model.Roles = await _roleManager.Roles.ToListAsync();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddToRole(string userId, string roleId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            var role = await _roleManager.FindByIdAsync(roleId);
+            var result = await _userManager.AddToRoleAsync(user, role.Name);
+            if (result.Succeeded)
+            {
+                return RedirectToAction(nameof(AddToRole));
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(error.Code, error.Description);
+                }
+                ModelState.AddModelError("", "Error updating role");
+                return View();
+            }
+        }
+
     }
 }

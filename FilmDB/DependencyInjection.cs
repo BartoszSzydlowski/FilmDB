@@ -1,5 +1,6 @@
 ﻿using System;
 using FilmDB.Models;
+using FilmDB.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -12,7 +13,9 @@ namespace FilmDB
 		public static IServiceCollection AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)
 		{
 			services.AddScoped<IFilmManager, FilmManager>();
-			
+
+            services.AddScoped<AddToRoleViewModel>();
+
             services.AddDbContext<FilmContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("BackupConnection"));

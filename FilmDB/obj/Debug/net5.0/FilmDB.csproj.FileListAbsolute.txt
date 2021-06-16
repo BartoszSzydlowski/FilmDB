@@ -878,3 +878,5 @@ C:\Users\Bartek\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\FilmDB.pdb
 C:\Users\Bartek\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\FilmDB.genruntimeconfig.cache
 C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Role\Add.cshtml.g.cs
 C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Role\Index.cshtml.g.cs
+C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Role\Edit.cshtml.g.cs
+C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Role\AddToRole.cshtml.g.cs
