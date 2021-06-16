@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FilmDB
 {
-	public class FilmContext : IdentityDbContext<ApplicationUserModel>
+	public class FilmContext : IdentityDbContext<ApplicationUser>
 	{
 		public DbSet<FilmModel> Films { get; set; }
 

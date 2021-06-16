@@ -1,4 +1,5 @@
-﻿using FilmDB.Models;
+﻿using System;
+using FilmDB.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -11,20 +12,14 @@ namespace FilmDB
 		public static IServiceCollection AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)
 		{
 			services.AddScoped<IFilmManager, FilmManager>();
+			
+            services.AddDbContext<FilmContext>(options =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString("BackupConnection"));
+            });
+			
 
-			services.AddDbContext<FilmContext>(options =>
-			{
-				try
-				{
-					options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-				}
-				catch
-				{
-					options.UseSqlServer(configuration.GetConnectionString("BackupConnection"));
-				}
-			});
-
-			services.AddIdentity<ApplicationUserModel, IdentityRole>(options =>
+			services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 			{
 				options.User.RequireUniqueEmail = true;
 			}).AddEntityFrameworkStores<FilmContext>();

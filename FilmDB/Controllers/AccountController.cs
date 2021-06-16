@@ -5,6 +5,9 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using FilmDB.Models;
+using FilmDB.ViewModels;
+using FilmDB.ViewModels.IdentityViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,10 +15,10 @@ namespace FilmDB.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly SignInManager<ApplicationUserModel> _signInManager;
-        private readonly UserManager<ApplicationUserModel> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public AccountController(SignInManager<ApplicationUserModel> signInManager, UserManager<ApplicationUserModel> userManager)
+        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -36,7 +39,7 @@ namespace FilmDB.Controllers
 		        return View(registerModel);
 	        }
 
-            var newUser = new ApplicationUserModel
+            var newUser = new ApplicationUser
             {
                 Email = registerModel.Email,
                 UserName = registerModel.Username,
@@ -55,9 +58,12 @@ namespace FilmDB.Controllers
             }
             else
             {
-				return RedirectToAction("Index", "Film");
+                var loginResult = await _signInManager.PasswordSignInAsync(registerModel.Username, registerModel.Password, false, false);
+                if (loginResult.Succeeded)
+                {
+                    return RedirectToAction(nameof(FilmController.Index), "Film");
+                }
             }
-
             return View(registerModel);
         }
 
@@ -69,13 +75,33 @@ namespace FilmDB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(RegisterViewModel model)
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(LogInViewModel model)
         {
-            IActionResult response = Unauthorized();
-            var user = await _userManager.FindByNameAsync(model.Username);
-            var checkPassword = await _userManager.CheckPasswordAsync(user, model.Password);
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            
+            var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, false, false);
 
-            return response;
+            if (result.Succeeded)
+            {
+                return RedirectToAction(nameof(FilmController.Index), "Film");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Failed to login");
+            }
+            return View(model);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction(nameof(FilmController.Index), "Film");
         }
     }
 }

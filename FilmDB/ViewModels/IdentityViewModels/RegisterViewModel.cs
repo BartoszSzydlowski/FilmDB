@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace FilmDB.Models
+namespace FilmDB.ViewModels.IdentityViewModels
 {
 	public class RegisterViewModel
 	{

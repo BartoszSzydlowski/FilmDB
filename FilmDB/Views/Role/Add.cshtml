@@ -1,0 +1,19 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model FilmDB.ViewModels.RoleViewModels.AddRoleViewModel
+
+<form method="post">
+    <table>
+        <tr>
+            <td>Role name: </td>
+            <td><input asp-for="Name"/></td>
+            <td><span asp-validation-for="Name"></span></td>
+            <td><input type="submit" class="btn btn-primary" value="Add new role"/></td>
+        </tr>
+    </table>
+    <div asp-validation-summary="All">
+
+    </div>
+</form>
