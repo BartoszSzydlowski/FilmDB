@@ -10,10 +10,16 @@ namespace FilmDB.Models
 		[Required]
 		public string Title { get; set; }
 
-		[Required]
-		public string Genre { get; set; }
+		//[Required]
+		//public string Genre { get; set; }
 
 		[Required]
 		public int Year { get; set; }
+
+		[Required]
+		public ActorModel Actor { get; set; }
+		 
+        [Required]
+		public GenreModel Genre { get; set; }
 	}
 }

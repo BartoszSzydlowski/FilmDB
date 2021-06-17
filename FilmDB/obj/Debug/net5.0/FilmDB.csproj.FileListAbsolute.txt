@@ -880,3 +880,13 @@ C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Role\Add.c
 C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Role\Index.cshtml.g.cs
 C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Role\Edit.cshtml.g.cs
 C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Role\AddToRole.cshtml.g.cs
+C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Actor\Create.cshtml.g.cs
+C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Actor\Delete.cshtml.g.cs
+C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Actor\Details.cshtml.g.cs
+C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Actor\Edit.cshtml.g.cs
+C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Actor\Index.cshtml.g.cs
+C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Genre\Create.cshtml.g.cs
+C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Genre\Delete.cshtml.g.cs
+C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Genre\Details.cshtml.g.cs
+C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Genre\Edit.cshtml.g.cs
+C:\Users\NobleProg\Desktop\FilmDB\FilmDB\obj\Debug\net5.0\Razor\Views\Genre\Index.cshtml.g.cs

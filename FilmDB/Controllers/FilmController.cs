@@ -1,6 +1,7 @@
 ﻿using FilmDB.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FilmDB.Controllers
 {
@@ -38,6 +39,7 @@ namespace FilmDB.Controllers
 		}
 
 		[HttpGet]
+        [Authorize(Roles = CustomRoles.Admin)]
 		public async Task<IActionResult> Remove(int id)
 		{
 			var film = await _filmManager.GetFilm(id);
@@ -46,6 +48,7 @@ namespace FilmDB.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+        [Authorize(Roles = CustomRoles.Admin)]
 		public async Task<IActionResult> ConfirmRemove(int id)
 		{
 			if (id != 0)
@@ -56,6 +59,7 @@ namespace FilmDB.Controllers
 		}
 
 		[HttpGet]
+		[Authorize(Roles = CustomRoles.AdminOrModerator)]
 		public async Task<IActionResult> Edit(int id)
 		{
 			var film = await _filmManager.GetFilm(id);
@@ -64,6 +68,7 @@ namespace FilmDB.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
+        [Authorize(Roles = CustomRoles.AdminOrModerator)]
 		public async Task<IActionResult> Edit(FilmModel filmModel)
 		{
 			if (ModelState.IsValid)

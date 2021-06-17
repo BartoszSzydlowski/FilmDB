@@ -117,19 +117,23 @@ namespace FilmDB.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             var role = await _roleManager.FindByIdAsync(roleId);
             var result = await _userManager.AddToRoleAsync(user, role.Name);
+
             if (result.Succeeded)
             {
-                return RedirectToAction(nameof(AddToRole));
-            }
-            else
-            {
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(error.Code, error.Description);
-                }
-                ModelState.AddModelError("", "Error updating role");
+                ViewBag.Result = $"Role {role} successfully added to user {user}";
+                //return RedirectToAction(nameof(AddToRole));
                 return View();
             }
+
+            ViewBag.Result = "Failed to add role";
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(error.Code, error.Description);
+            }
+            ModelState.AddModelError("", "Error updating role");
+
+            return View();
         }
 
     }
